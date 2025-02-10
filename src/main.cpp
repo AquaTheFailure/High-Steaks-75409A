@@ -1,10 +1,8 @@
 #include "main.h"
-#include "lemlib/logger/logger.hpp"
-#include "pros/rtos.hpp"
+#include "lemlib/api.hpp"
 #include "user/Devices.hpp"
 
 using namespace devices;
-
 
 /**
  * Runs initialization code. This occurs as soon as the program is started.
@@ -70,7 +68,7 @@ void competition_initialize() {}
  * from where it left off.
  */
 
-ASSET(GAuto_txt);
+// ASSET(GAuto_txt);
 
 void autonomous() {
 }
