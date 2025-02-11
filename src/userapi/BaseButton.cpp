@@ -1,22 +1,25 @@
 #include "user/BaseButton.hpp"
-#include "pros/misc.h"
+#include "pros/rtos.hpp"
 #include "user/Devices.hpp"
 
 namespace button {
-    bool tgEnterIntake = false;
-    bool tgExitIntake = false;
-
     std::vector<BaseButton*> BaseButton::buttonActions;
 
-    BaseButton::BaseButton(pros::controller_digital_e_t button, bool setDebug) : button(button), debug(setDebug) {
+    BaseButton::BaseButton(pros::controller_digital_e_t button, bool enabledTask) {
+        this->button = button;
+        this->enabledTask = enabledTask;
         buttonActions.push_back(this);
     }
 
     void BaseButton::run() {
-        for (BaseButton* action : buttonActions) {
-            action->update();
-            pros::delay(10);
-        }
+        pros::Task buttonTask([&]() {
+            while (true) {
+                for (BaseButton* action : buttonActions) {
+                    action->update();
+                }
+                pros::delay(10);
+            }
+        });
     }
 
     void BaseButton::update() {
@@ -29,8 +32,8 @@ namespace button {
         }
 
         wasPressed = isPressed;
-        if (debug) {
-            std::cout << isPressed << ", " << wasPressed << std::endl;
-        }
     }
+
+    void onPress() {}
+    void onRelease() {}
 }

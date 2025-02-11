@@ -6,6 +6,12 @@
 #include "pros/misc.hpp"
 #include "pros/motor_group.hpp"
 
+#include "user/actions/Doinker.hpp"
+#include "user/actions/HailMary.hpp"
+#include "user/actions/Intake.hpp"
+#include "user/actions/Lift.hpp"
+#include "user/actions/MogoMech.hpp"
+
 namespace devices {
     extern pros::MotorGroup leftMotors;
     extern pros::MotorGroup rightMotors;
@@ -22,7 +28,7 @@ namespace devices {
     extern lemlib::ExpoDriveCurve steerCurve;
     extern lemlib::Chassis chassis;
 
-    extern pros::Motor conveyorMotor;
+    extern pros::Motor liftMotor;
     extern pros::Motor intakeMotor;
     extern pros::Motor hailMaryMotor;
 
@@ -31,4 +37,16 @@ namespace devices {
 }
 
 namespace configuredButtons{
+    extern buttonActions::Doinker doinkerButton;
+
+    extern buttonActions::MogoMech mogoMechButton;
+
+    extern buttonActions::HailMaryUp hailMaryUpButton;
+    extern buttonActions::HailMaryDown hailMaryDownButton;
+
+    extern buttonActions::LiftUp liftUpButton;
+    extern buttonActions::LiftDown liftDownButton;
+
+    extern buttonActions::IntakeIn intakeInButton;
+    extern buttonActions::IntakeOut intakeOutButton;
 }

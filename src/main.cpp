@@ -1,5 +1,6 @@
 #include "main.h"
-#include "lemlib/api.hpp"
+#include "lemlib/logger/logger.hpp"
+#include "pros/motors.h"
 #include "user/Devices.hpp"
 
 using namespace devices;
@@ -13,6 +14,7 @@ using namespace devices;
 void initialize() {
     pros::lcd::initialize(); // initialize brain screen
     chassis.calibrate(); // calibrate sensors
+    hailMaryMotor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
     // std::cout << "HERE!!!" <<poer456dfgscvx 
 
     // the default rate is 50. however, if you need to change the rate, you
@@ -87,22 +89,18 @@ void autonomous() {
  * task, not resume it from where it left off.
  */
 void opcontrol() {
-    // controller
-    // loop to continuously update motors
-    pros::Task warning = pros::Task{ [] {
+    pros::Task warning([] {
         pros::delay(65000);
         controller.rumble("- - - - - - - -");
-    }};
-    warning.notify();
+    });
+
+    button::BaseButton::run();
 
     while (true) {
         // get joystick positions
         int leftY = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
         int rightY = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
-        // bool leftBumper = controller.get_digital(pros::E_CONTROLLER_DIGITAL_L1);
-        // button::BaseButton::run();
-        // std::cout << leftBumper << std::endl;
-        // move the chassis with curvature drive
+
         chassis.arcade(leftY, rightY);
 
         // delay to save resources
