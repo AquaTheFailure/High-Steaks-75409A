@@ -33,7 +33,4 @@ namespace button {
 
         wasPressed = isPressed;
     }
-
-    void onPress() {}
-    void onRelease() {}
 }

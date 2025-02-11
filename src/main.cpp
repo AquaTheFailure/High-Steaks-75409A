@@ -70,7 +70,7 @@ void competition_initialize() {}
  * from where it left off.
  */
 
-// ASSET(GAuto_txt);
+ASSET(example_txt);
 
 void autonomous() {
 }
