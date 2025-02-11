@@ -1,7 +1,7 @@
 #include "user/Devices.hpp"
 
 namespace devices {
-    pros::MotorGroup leftMotors({14, 13, 12}, pros::MotorGearset::green);
+    pros::MotorGroup leftMotors({-14, -13, -12}, pros::MotorGearset::green);
     pros::MotorGroup rightMotors({18, 17, 16}, pros::MotorGearset::green);
 
     pros::Imu imu(15);
