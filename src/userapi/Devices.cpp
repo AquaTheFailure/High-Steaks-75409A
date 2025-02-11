@@ -11,7 +11,7 @@ namespace devices {
     lemlib::Drivetrain drivetrain(&leftMotors, // left motor group
                                 &rightMotors, // right motor group
                                 12.5, // 10 inch track width
-                                lemlib::Omniwheel::OLD_4, // using new 4" omnis
+                                lemlib::Omniwheel::NEW_275, // using new 4" omnis
                                 360, // drivetrain rpm is 360
                                 8 // horizontal drift is 2. If we had traction wheels, it would have been 8
     );
