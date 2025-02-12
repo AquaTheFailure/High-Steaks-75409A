@@ -15,6 +15,7 @@ pros::screen_touch_status_s_t status;
  * to keep execution time for this mode under a few seconds.
  */
 void changePixel() {
+    status = pros::screen_touch_status_s_t();
     pros::lcd::print(5, "X: %f", status.x);
     pros::lcd::print(6, "Y: %f", status.y);
 }
