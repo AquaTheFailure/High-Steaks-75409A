@@ -13,8 +13,9 @@ namespace userscreen{
             int cords1[2];
             int cords2[2];
         public:
-            bool inbounds(int pos[2]);
             ScreenButton(int x, int y, int width, int height, pros::c::color_e color, std::string text = "");
+            static void run(int x, int y);
+            bool inbounds(int x, int y);
             void draw();
             virtual void onclick() {}
     };

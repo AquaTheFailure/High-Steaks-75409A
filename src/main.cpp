@@ -2,8 +2,11 @@
 #include "lemlib/logger/logger.hpp"
 #include "pros/motors.h"
 #include "user/Devices.hpp"
+#include "user/screen/automButton.hpp"
 
 using namespace devices;
+
+pros::screen_touch_status_s_t status;
 
 /**
  * Runs initialization code. This occurs as soon as the program is started.
@@ -56,7 +59,16 @@ void disabled() {}
  * This task will exit when the robot is enabled and autonomous or opcontrol
  * starts.
  */
-void competition_initialize() {}
+
+void competition_initialize() {
+    while (true) {
+        status = pros::screen_touch_status_s_t();
+        if (status.touch_status == pros::last_touch_e_t::E_TOUCH_PRESSED) {
+            break;
+        }
+        pros::delay(10);
+    }
+}
 
 /**
  * Runs the user autonomous code. This function will be started in its own task
@@ -70,9 +82,8 @@ void competition_initialize() {}
  * from where it left off.
  */
 
-ASSET(example_txt);
-
 void autonomous() {
+    userscreen::ScreenButton::run(status.x, status.y);
 }
 
 /**
