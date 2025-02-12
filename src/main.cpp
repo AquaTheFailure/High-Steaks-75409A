@@ -14,10 +14,18 @@ pros::screen_touch_status_s_t status;
  * All other competition modes are blocked by initialize; it is recommended
  * to keep execution time for this mode under a few seconds.
  */
+void changePixel() {
+    pros::lcd::print(5, "X: %f", status.x);
+    pros::lcd::print(6, "Y: %f", status.y);
+}
+
 void initialize() {
     pros::lcd::initialize(); // initialize brain screen
     chassis.calibrate(); // calibrate sensors
     hailMaryMotor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+
+    pros::screen::touch_callback(changePixel, TOUCH_PRESSED);
+    
     // std::cout << "HERE!!!" <<poer456dfgscvx 
 
     // the default rate is 50. however, if you need to change the rate, you
@@ -61,13 +69,14 @@ void disabled() {}
  */
 
 void competition_initialize() {
-    while (true) {
-        status = pros::screen_touch_status_s_t();
-        if (status.touch_status == pros::last_touch_e_t::E_TOUCH_PRESSED) {
-            break;
-        }
-        pros::delay(10);
-    }
+    // while (true) {
+    //     status = pros::screen_touch_status_s_t();
+    //     std::cout << status.touch_status;
+    //     if (status.touch_status == pros::last_touch_e_t::E_TOUCH_PRESSED) {
+    //         break;
+    //     }
+    //     pros::delay(10);
+    // }
 }
 
 /**
