@@ -2,11 +2,9 @@
 #include "lemlib/logger/logger.hpp"
 #include "pros/motors.h"
 #include "user/Devices.hpp"
-#include "user/screen/automButton.hpp"
+#include "user/AutomSelector.hpp"
 
 using namespace devices;
-
-pros::screen_touch_status_s_t status;
 
 /**
  * Runs initialization code. This occurs as soon as the program is started.
@@ -14,18 +12,12 @@ pros::screen_touch_status_s_t status;
  * All other competition modes are blocked by initialize; it is recommended
  * to keep execution time for this mode under a few seconds.
  */
-void changePixel() {
-    status = pros::screen_touch_status_s_t();
-    pros::lcd::print(5, "X: %f", status.x);
-    pros::lcd::print(6, "Y: %f", status.y);
-}
 
 void initialize() {
     pros::lcd::initialize(); // initialize brain screen
     chassis.calibrate(); // calibrate sensors
+    potentiometer.calibrate();
     hailMaryMotor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-
-    pros::screen::touch_callback(changePixel, TOUCH_PRESSED);
     
     // std::cout << "HERE!!!" <<poer456dfgscvx 
 
@@ -44,6 +36,10 @@ void initialize() {
             pros::lcd::print(0, "X: %f", chassis.getPose().x); // x
             pros::lcd::print(1, "Y: %f", chassis.getPose().y); // y
             pros::lcd::print(2, "Theta: %f", chassis.getPose().theta); // heading
+            pros::lcd::print(4, "Autom: %f", automSelector::get_selected_name());
+            pros::lcd::print(5, "Selected %f", automSelector::get_selected());
+            // potentiometer.
+            pros::lcd::print(5, "Selected %f", potentiometer.get_value());
             // log position telemetry
             lemlib::telemetrySink()->info("Chassis pose: {}", chassis.getPose());
             // delay to save resources
@@ -70,14 +66,6 @@ void disabled() {}
  */
 
 void competition_initialize() {
-    // while (true) {
-    //     status = pros::screen_touch_status_s_t();
-    //     std::cout << status.touch_status;
-    //     if (status.touch_status == pros::last_touch_e_t::E_TOUCH_PRESSED) {
-    //         break;
-    //     }
-    //     pros::delay(10);
-    // }
 }
 
 /**
@@ -93,7 +81,7 @@ void competition_initialize() {
  */
 
 void autonomous() {
-    userscreen::ScreenButton::run(status.x, status.y);
+    automSelector::run_autom();
 }
 
 /**

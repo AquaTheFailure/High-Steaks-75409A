@@ -16,6 +16,7 @@ namespace button{
             virtual ~BaseButton() = default;
 
             static void run();
+            static void reset();
             void update();
             virtual void onPress() {}
             virtual void onRelease() {}

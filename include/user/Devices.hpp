@@ -12,8 +12,6 @@
 #include "user/actions/Lift.hpp"
 #include "user/actions/MogoMech.hpp"
 
-#include "user/screen/automButton.hpp"
-
 namespace devices {
     extern pros::MotorGroup leftMotors;
     extern pros::MotorGroup rightMotors;
@@ -36,6 +34,8 @@ namespace devices {
 
     extern pros::adi::Pneumatics mogoMech;
     extern pros::adi::Pneumatics doinker;
+
+    extern pros::adi::Potentiometer potentiometer;
 }
 
 namespace configuredButtons{
@@ -51,11 +51,4 @@ namespace configuredButtons{
 
     extern buttonActions::IntakeIn intakeInButton;
     extern buttonActions::IntakeOut intakeOutButton;
-}
-
-namespace configuredAutom {
-    extern screenAction::RedNegative redNegativeButton;
-    extern screenAction::RedPositive redPositiveButton;
-    extern screenAction::BlueNegative blueNegativeButton;
-    extern screenAction::BluePositive bluePositiveButton;
 }

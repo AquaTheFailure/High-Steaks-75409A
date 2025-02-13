@@ -33,4 +33,8 @@ namespace button {
 
         wasPressed = isPressed;
     }
+
+    void BaseButton::reset() {
+        buttonActions.clear();
+    }
 }

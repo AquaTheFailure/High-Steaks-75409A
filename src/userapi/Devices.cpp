@@ -69,6 +69,8 @@ namespace devices {
 
     pros::adi::Pneumatics mogoMech(1, false);
     pros::adi::Pneumatics doinker(2, false);
+
+    pros::adi::Potentiometer potentiometer(3);
 }
 
 // Button Controll setup
@@ -85,11 +87,4 @@ namespace configuredButtons {
 
     buttonActions::IntakeIn intakeInButton(pros::E_CONTROLLER_DIGITAL_R1);
     buttonActions::IntakeOut intakeOutButton(pros::E_CONTROLLER_DIGITAL_R2);
-}
-
-namespace configuredAutom {
-    screenAction::RedNegative redNegativeButton(0, 0, 240, 120, pros::c::COLOR_RED);
-    screenAction::RedPositive redPositiveButton(0, 120, 240, 120, pros::c::COLOR_DARK_RED);
-    screenAction::BlueNegative blueNegativeButton(240, 0, 240, 120, pros::c::COLOR_BLUE);
-    screenAction::BluePositive bluePositiveButton(240, 120, 240, 120, pros::c::COLOR_DARK_BLUE);
 }
