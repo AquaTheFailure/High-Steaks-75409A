@@ -1,4 +1,5 @@
 #include "user/Devices.hpp"
+#include "pros/misc.h"
 
 namespace devices {
     pros::MotorGroup leftMotors({-14, -13, -12}, pros::MotorGearset::green);
@@ -75,12 +76,16 @@ namespace devices {
 
 // Button Controll setup
 namespace configuredButtons {
-    buttonActions::Doinker doinkerButton(pros::E_CONTROLLER_DIGITAL_LEFT);
+    // buttonActions::Doinker doinkerButton(pros::E_CONTROLLER_DIGITAL_LEFT);
+    buttonActions::Doinker doinkerButton(pros::E_CONTROLLER_DIGITAL_Y);
 
-    buttonActions::MogoMech mogoMechButton(pros::E_CONTROLLER_DIGITAL_A);
-
-    buttonActions::HailMaryUp hailMaryUpButton(pros::E_CONTROLLER_DIGITAL_UP);
-    buttonActions::HailMaryDown hailMaryDownButton(pros::E_CONTROLLER_DIGITAL_DOWN);
+    // buttonActions::MogoMech mogoMechButton(pros::E_CONTROLLER_DIGITAL_A);
+    buttonActions::MogoMech mogoMechButton(pros::E_CONTROLLER_DIGITAL_B);
+    
+    // buttonActions::HailMaryUp hailMaryUpButton(pros::E_CONTROLLER_DIGITAL_UP);
+    buttonActions::HailMaryUp hailMaryUpButton(pros::E_CONTROLLER_DIGITAL_DOWN);
+    // buttonActions::HailMaryDown hailMaryDownButton(pros::E_CONTROLLER_DIGITAL_DOWN);
+    buttonActions::HailMaryDown hailMaryDownButton(pros::E_CONTROLLER_DIGITAL_RIGHT);
 
     buttonActions::LiftUp liftUpButton(pros::E_CONTROLLER_DIGITAL_L1);
     buttonActions::LiftDown liftDownButton(pros::E_CONTROLLER_DIGITAL_L2);

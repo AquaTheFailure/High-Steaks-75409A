@@ -2,6 +2,8 @@
 #include "user/Devices.hpp"
 #include <cmath>
 
+using namespace devices;
+
 namespace automSelector{
     std::string get_selected_name() {
         switch (get_selected()) {
@@ -52,7 +54,7 @@ namespace automSelector{
     }
 
     void MoveLittle() {
-
+        chassis.turnToHeading(90, 1000);
     }
 
     void BluePositive() {
