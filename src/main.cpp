@@ -16,7 +16,6 @@ using namespace devices;
 void initialize() {
     pros::lcd::initialize(); // initialize brain screen
     chassis.calibrate(); // calibrate sensors
-    potentiometer.calibrate();
     hailMaryMotor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
     
     // std::cout << "HERE!!!" <<poer456dfgscvx 
@@ -36,10 +35,10 @@ void initialize() {
             pros::lcd::print(0, "X: %f", chassis.getPose().x); // x
             pros::lcd::print(1, "Y: %f", chassis.getPose().y); // y
             pros::lcd::print(2, "Theta: %f", chassis.getPose().theta); // heading
-            pros::lcd::print(4, "Autom: %f", automSelector::get_selected_name());
-            pros::lcd::print(5, "Selected %f", automSelector::get_selected());
-            // potentiometer.
-            pros::lcd::print(5, "Selected %f", potentiometer.get_value());
+            pros::lcd::print(4, "Autom: %s", automSelector::get_selected_name());
+            pros::lcd::print(5, "Selected:  %d", automSelector::get_selected());
+
+            std::cout << "Value:  " << potentiometer.get_value() << std::endl;
             // log position telemetry
             lemlib::telemetrySink()->info("Chassis pose: {}", chassis.getPose());
             // delay to save resources

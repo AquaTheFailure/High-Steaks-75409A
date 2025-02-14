@@ -10,15 +10,17 @@ namespace automSelector{
             case 2:
                 return "Red Positive";
             case 3:
-                return "Blue Negative";
+                return "Move Little";
             case 4:
                 return "Blue Positive";
-        }
-        return "";
+            case 5:
+                return "Blue Negative";
+            }
+        return "None";
     }
 
     int get_selected() {
-        return round(devices::potentiometer.get_value() / 1365) + 1;
+        return (int) round(devices::potentiometer.get_value() / 1023.75) + 1;
     }
 
     void run_autom() {
@@ -30,9 +32,14 @@ namespace automSelector{
                 RedPositive();
                 break;
             case 3:
-                BlueNegative();
+                MoveLittle();
+                break;
             case 4:
                 BluePositive();
+                break;
+            case 5:
+                BlueNegative();
+                break;
         }
     }
 
@@ -44,11 +51,16 @@ namespace automSelector{
 
     }
 
-    void BlueNegative() {
+    void MoveLittle() {
 
     }
 
     void BluePositive() {
 
     }
+
+    void BlueNegative() {
+
+    }
+
 }

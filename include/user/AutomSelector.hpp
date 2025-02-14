@@ -9,6 +9,7 @@ namespace automSelector {
     
     void RedNegative();
     void RedPositive();
+    void MoveLittle();
     void BlueNegative();
     void BluePositive();
 }
