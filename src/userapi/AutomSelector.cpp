@@ -4,6 +4,8 @@
 
 using namespace devices;
 
+ASSET(MoveLittle_txt);
+
 namespace automSelector{
     std::string get_selected_name() {
         switch (get_selected()) {
@@ -54,7 +56,8 @@ namespace automSelector{
     }
 
     void MoveLittle() {
-        chassis.turnToHeading(90, 1000);
+        chassis.setPose(-60, 23, 90);
+        chassis.follow(MoveLittle_txt, 10, 2000, true);
     }
 
     void BluePositive() {

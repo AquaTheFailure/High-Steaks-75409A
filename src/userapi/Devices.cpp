@@ -1,9 +1,10 @@
 #include "user/Devices.hpp"
+#include "lemlib/chassis/trackingWheel.hpp"
 #include "pros/misc.h"
 
 namespace devices {
-    pros::MotorGroup leftMotors({-14, -13, -12}, pros::MotorGearset::green);
-    pros::MotorGroup rightMotors({18, 17, 16}, pros::MotorGearset::green);
+    pros::MotorGroup leftMotors({-14, -13, -12}, pros::MotorGearset::blue);
+    pros::MotorGroup rightMotors({18, 17, 16}, pros::MotorGearset::blue);
 
     pros::Imu imu(15);
 

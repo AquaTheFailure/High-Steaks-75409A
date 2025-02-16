@@ -16,6 +16,7 @@ using namespace devices;
 void initialize() {
     pros::lcd::initialize(); // initialize brain screen
     chassis.calibrate(); // calibrate sensors
+    // chassis.setBrakeMode(pros::E_MOTOR_BRAKE_BRAKE);
     hailMaryMotor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
     
     // std::cout << "HERE!!!" <<poer456dfgscvx 
@@ -108,6 +109,11 @@ void opcontrol() {
         int rightY = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
 
         chassis.tank(leftY, rightY);
+
+        // int leftY = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
+        // int rightX = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X);
+
+        // chassis.arcade(leftY, rightX);
 
         // delay to save resources
         pros::delay(10);
