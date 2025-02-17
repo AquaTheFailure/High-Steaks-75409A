@@ -83,10 +83,8 @@ namespace configuredButtons {
     // buttonActions::MogoMech mogoMechButton(pros::E_CONTROLLER_DIGITAL_A);
     buttonActions::MogoMech mogoMechButton(pros::E_CONTROLLER_DIGITAL_B);
     
-    // buttonActions::HailMaryUp hailMaryUpButton(pros::E_CONTROLLER_DIGITAL_UP);
-    buttonActions::HailMaryUp hailMaryUpButton(pros::E_CONTROLLER_DIGITAL_DOWN);
-    // buttonActions::HailMaryDown hailMaryDownButton(pros::E_CONTROLLER_DIGITAL_DOWN);
-    buttonActions::HailMaryDown hailMaryDownButton(pros::E_CONTROLLER_DIGITAL_RIGHT);
+    buttonActions::HailMaryUp hailMaryUpButton(pros::E_CONTROLLER_DIGITAL_UP);
+    buttonActions::HailMaryDown hailMaryDownButton(pros::E_CONTROLLER_DIGITAL_DOWN);
 
     buttonActions::LiftUp liftUpButton(pros::E_CONTROLLER_DIGITAL_L1);
     buttonActions::LiftDown liftDownButton(pros::E_CONTROLLER_DIGITAL_L2);
