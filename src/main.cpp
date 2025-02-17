@@ -79,6 +79,7 @@ void competition_initialize() {
  */
 
 void autonomous() {
+    chassis.setBrakeMode(pros::E_MOTOR_BRAKE_BRAKE);
     automSelector::run_autom();
 }
 
@@ -96,6 +97,8 @@ void autonomous() {
  * task, not resume it from where it left off.
  */
 void opcontrol() {
+    chassis.setBrakeMode(pros::E_MOTOR_BRAKE_COAST);
+
     pros::Task warning([] {
         pros::delay(65000);
         controller.rumble("- - - - - - - -");

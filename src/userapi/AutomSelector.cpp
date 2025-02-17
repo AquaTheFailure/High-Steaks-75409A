@@ -5,6 +5,7 @@
 using namespace devices;
 
 ASSET(MoveLittle_txt);
+ASSET(RedNegative_txt);
 
 namespace automSelector{
     std::string get_selected_name() {
@@ -48,7 +49,14 @@ namespace automSelector{
     }
 
     void RedNegative() {
-
+        chassis.setPose(-60, 23.5, 270);
+        chassis.follow(RedNegative_txt, 10, 5000, false);
+        chassis.waitUntil(24);
+        // chassis.moveToPose(-36, 23.5, 270, 4000, {}, false);
+        mogoMech.toggle();
+        liftMotor.move(127);
+        pros::delay(1000);
+        liftMotor.move(0);
     }
 
     void RedPositive() {
