@@ -4,7 +4,7 @@
 namespace buttonActions {
     void HailMaryUp::onPress() {
         devices::hailMaryMotor.move(127);
-        devices::liftMotor.move(-100);
+        devices::liftMotor.move(-75);
     }
 
     void HailMaryUp::onRelease() {
