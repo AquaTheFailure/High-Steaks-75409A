@@ -1,3 +1,4 @@
+#include "lemlib-tarball/api.hpp"
 #include "user/AutomSelector.hpp"
 #include "user/Devices.hpp"
 #include <cmath>
@@ -6,6 +7,9 @@ using namespace devices;
 
 ASSET(MoveLittle_txt);
 ASSET(RedNegative_txt);
+ASSET(my_lemlib_tarball_file_txt);
+
+lemlib_tarball::Decoder decoder(my_lemlib_tarball_file_txt);
 
 namespace automSelector{
     std::string get_selected_name() {

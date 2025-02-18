@@ -6,3 +6,7 @@
 # Docs
 - [Lemlib](https://lemlib.readthedocs.io/en/stable/)
 - [Pros](https://pros.cs.purdue.edu/v5/tutorials/index.html)
+
+# Lemlib Tarball Links
+- [JerryIO Dev](https://dev-path.jerryio.com/)
+- [LemLibTarball](https://github.com/Jerrylum/LemLibTarball)
