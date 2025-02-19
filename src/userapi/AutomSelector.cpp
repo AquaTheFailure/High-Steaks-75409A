@@ -7,9 +7,9 @@ using namespace devices;
 
 ASSET(MoveLittle_txt);
 ASSET(RedNegative_txt);
-ASSET(my_lemlib_tarball_file_txt);
+ASSET(RedNegativeDualCracked_txt);
 
-lemlib_tarball::Decoder decoder(my_lemlib_tarball_file_txt);
+lemlib_tarball::Decoder decoder(RedNegativeDualCracked_txt);
 
 namespace automSelector{
     std::string get_selected_name() {
@@ -54,12 +54,13 @@ namespace automSelector{
 
     void RedNegative() {
         chassis.setPose(-60, 23.5, 270);
-        chassis.follow(RedNegative_txt, 10, 5000, false);
+        chassis.follow(decoder["RedNegative1"], 10, 5000, false, true);
         chassis.waitUntil(23);
         mogoMech.toggle();
+        pros::delay(250);
         liftMotor.move(127);
-        pros::delay(1500);
-        liftMotor.move(0);
+        pros::delay(500);
+        intakeMotor.move(127);
     }
 
     void RedPositive() {
@@ -76,7 +77,8 @@ namespace automSelector{
     }
 
     void BlueNegative() {
-
+        chassis.setPose(-60, 0, 0);
+        chassis.moveToPoint(-40, 0, 3000);
     }
 
 }
