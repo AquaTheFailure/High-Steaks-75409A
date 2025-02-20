@@ -1,6 +1,8 @@
 #include "main.h"
 #include "lemlib/logger/logger.hpp"
 #include "pros/motors.h"
+#include "pros/screen.h"
+#include "pros/screen.hpp"
 #include "user/Devices.hpp"
 #include "user/AutomSelector.hpp"
 
@@ -14,7 +16,7 @@ using namespace devices;
  */
 
 void initialize() {
-    pros::lcd::initialize(); // initialize brain screen
+    // pros::lcd::initialize(); // initialize brain screen
     chassis.calibrate(); // calibrate sensors
     // chassis.setBrakeMode(pros::E_MOTOR_BRAKE_BRAKE);
     hailMaryMotor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
@@ -33,11 +35,16 @@ void initialize() {
     pros::Task screenTask([&]() {
         while (true) {
             // print robot location to the brain screen
-            pros::lcd::print(0, "X: %f", chassis.getPose().x); // x
-            pros::lcd::print(1, "Y: %f", chassis.getPose().y); // y
-            pros::lcd::print(2, "Theta: %f", chassis.getPose().theta); // heading
-            pros::lcd::print(3, "Autom: %s", automSelector::get_selected_name());
-            pros::lcd::print(4, "Selected:  %d", automSelector::get_selected());
+            pros::screen::print(pros::E_TEXT_MEDIUM, 0, "X: %f", chassis.getPose().x);
+            pros::screen::print(pros::E_TEXT_MEDIUM, 1, "Y: %f", chassis.getPose().y);
+            pros::screen::print(pros::E_TEXT_MEDIUM, 2, "Theta: %f", chassis.getPose().theta);
+            pros::screen::print(pros::E_TEXT_MEDIUM, 3, "Autom: (%d) %s", automSelector::get_selected(), automSelector::get_selected_name());
+            pros::screen::print(pros::E_TEXT_MEDIUM, 4, "HailMerry Deg: %f", hailMaryMotor.get_position());
+            // pros::lcd::print(0, "X: %f", chassis.getPose().x); // x
+            // pros::lcd::print(1, "Y: %f", chassis.getPose().y); // y
+            // pros::lcd::print(2, "Theta: %f", chassis.getPose().theta); // heading
+            // pros::lcd::print(3, "Autom: %s", automSelector::get_selected_name());
+            // pros::lcd::print(4, "Selected:  %d", automSelector::get_selected());
             // // log position telemetry
             lemlib::telemetrySink()->info("Chassis pose: {}", chassis.getPose());
             // delay to save resources

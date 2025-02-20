@@ -19,4 +19,12 @@ namespace buttonActions {
     void HailMaryDown::onRelease() {
         devices::hailMaryMotor.brake();
     }
+
+    void HailMaryMacro::onPress() {
+        if (devices::hailMaryMotor.get_position() < 470) {
+            devices::hailMaryMotor.move_absolute(470, 127);
+        } else {
+            devices::hailMaryMotor.move_absolute(470, -127);
+        }
+    }
 }

@@ -16,4 +16,10 @@ namespace buttonActions {
             void onPress();
             void onRelease();
     };
+
+    class HailMaryMacro : public button::BaseButton {
+        public:
+            HailMaryMacro(pros::controller_digital_e_t button, bool enabledTask = false) : BaseButton(button, enabledTask) {}
+            void onPress();
+    };
 };

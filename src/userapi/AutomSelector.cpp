@@ -6,7 +6,7 @@
 using namespace devices;
 
 ASSET(MoveLittle_txt);
-ASSET(RedNegative_txt);
+// ASSET(RedNegative_txt);
 ASSET(RedNegativeDualCracked_txt);
 
 lemlib_tarball::Decoder decoder(RedNegativeDualCracked_txt);
@@ -54,13 +54,12 @@ namespace automSelector{
 
     void RedNegative() {
         chassis.setPose(-60, 23.5, 270);
-        chassis.follow(decoder["RedNegative1"], 10, 5000, false, true);
-        chassis.waitUntil(23);
+        chassis.follow(decoder["RedNegative1"], 10, 5000, false, false);
         mogoMech.toggle();
         pros::delay(250);
         liftMotor.move(127);
-        pros::delay(500);
         intakeMotor.move(127);
+        chassis.follow(decoder["RedNegative2"], 10, 5000, true, true);
     }
 
     void RedPositive() {
@@ -77,8 +76,9 @@ namespace automSelector{
     }
 
     void BlueNegative() {
-        chassis.setPose(-60, 0, 0);
-        chassis.moveToPoint(-40, 0, 3000);
+        // chassis.setPose(-60, 0, 0);
+        // chassis.turnToHeading(270, 100000);
+        chassis.setPose(0, 0, 0);
+        chassis.moveToPose(0, 24, 0, 10000);
     }
-
 }
