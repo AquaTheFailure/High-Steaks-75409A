@@ -1,10 +1,12 @@
 #include "main.h"
-#include "lemlib/logger/logger.hpp"
+// #include "lemlib/logger/logger.hpp"
 #include "pros/motors.h"
 #include "pros/screen.h"
 #include "pros/screen.hpp"
 #include "user/Devices.hpp"
 #include "user/AutomSelector.hpp"
+#include <cstdio>
+// #include <iostream>
 
 using namespace devices;
 
@@ -40,15 +42,18 @@ void initialize() {
             pros::screen::print(pros::E_TEXT_MEDIUM, 2, "Theta: %f", chassis.getPose().theta);
             pros::screen::print(pros::E_TEXT_MEDIUM, 3, "Autom: (%d) %s", automSelector::get_selected(), automSelector::get_selected_name());
             pros::screen::print(pros::E_TEXT_MEDIUM, 4, "HailMerry Deg: %f", hailMaryMotor.get_position());
-            // pros::lcd::print(0, "X: %f", chassis.getPose().x); // x
-            // pros::lcd::print(1, "Y: %f", chassis.getPose().y); // y
-            // pros::lcd::print(2, "Theta: %f", chassis.getPose().theta); // heading
-            // pros::lcd::print(3, "Autom: %s", automSelector::get_selected_name());
-            // pros::lcd::print(4, "Selected:  %d", automSelector::get_selected());
             // // log position telemetry
-            lemlib::telemetrySink()->info("Chassis pose: {}", chassis.getPose());
+            // std::printf("Chassis Pose: (%f, %f, %f)\n", chassis.getPose().x, chassis.getPose().y, chassis.getPose().theta);
+            // lemlib::telemetrySink()->info("Chassis pose: {}", chassis.getPose());
             // delay to save resources
             pros::delay(50);
+        }
+    });
+
+    pros::Task otherScreenTask([&]() {
+        while (true) {
+            std::printf("Chassis Pose: (%f, %f, %f)\n", chassis.getPose().x, chassis.getPose().y, chassis.getPose().theta);
+            pros::delay(250);
         }
     });
 }
@@ -115,15 +120,15 @@ void opcontrol() {
 
     while (true) {
         // get joystick positions
-        int leftY = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
-        int rightY = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
-
-        chassis.tank(leftY, rightY);
-
         // int leftY = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
-        // int rightX = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X);
+        // int rightY = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
 
-        // chassis.arcade(leftY, rightX);
+        // chassis.tank(leftY, rightY);
+
+        int leftY = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
+        int rightX = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X);
+
+        chassis.arcade(leftY, rightX);
 
         // delay to save resources
         pros::delay(10);
