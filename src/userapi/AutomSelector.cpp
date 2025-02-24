@@ -52,7 +52,7 @@ namespace automSelector{
     }
 
     void RedNegative() {
-        chassis.setPose(-61, 23.5, 270);
+        chassis.setPose(-61, 47.5, 270);
         chassis.follow(decoder["RedNegative1"], 15, 5000, false, false);
         // chassis.waitUntil(33);
         mogoMech.toggle();
