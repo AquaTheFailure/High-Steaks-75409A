@@ -53,8 +53,8 @@ namespace automSelector{
 
     void RedNegative() {
         chassis.setPose(-61, 47.5, 270);
-        chassis.follow(decoder["RedNegative1"], 15, 5000, false, false);
-        // chassis.waitUntil(33);
+        chassis.follow(decoder["RedNegative1"], 15, 3000, false, true);
+        chassis.waitUntil(39);
         mogoMech.toggle();
         pros::delay(250);
         liftMotor.move(127);

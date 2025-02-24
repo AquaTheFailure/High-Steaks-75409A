@@ -74,6 +74,8 @@ namespace devices {
     pros::adi::Pneumatics doinker(2, false);
 
     pros::adi::Potentiometer potentiometer(3);
+
+    pros::Vision visionSensor(1);
 }
 
 // Button Controll setup
