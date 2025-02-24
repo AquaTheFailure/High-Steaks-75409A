@@ -109,6 +109,8 @@ void autonomous() {
  * task, not resume it from where it left off.
  */
 void opcontrol() {
+    intakeMotor.move(0);
+    liftMotor.move(0);
     chassis.setBrakeMode(pros::E_MOTOR_BRAKE_COAST);
 
     pros::Task warning([] {

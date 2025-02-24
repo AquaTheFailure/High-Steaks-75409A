@@ -15,33 +15,33 @@ namespace devices {
                                 &rightMotors, // right motor group
                                 12.75, // 10 inch track width
                                 lemlib::Omniwheel::NEW_275, // using new 4" omnis
-                                360, // drivetrain rpm is 360
+                                600, // drivetrain rpm is 360
                                 8 // horizontal drift is 2. If we had traction wheels, it would have been 8
     );
 
     // lateral motion controller
-    lemlib::ControllerSettings linearController(7, // proportional gain (kP)
-                                            0, // integral gain (kI)
-                                            6, // derivative gain (kD)
-                                            0, // anti windup
-                                            1, // small error range, in inches
-                                            100, // small error range timeout, in milliseconds
-                                            3, // large error range, in inches
-                                            500, // large error range timeout, in milliseconds
-                                            20 // maximum acceleration (slew)
+    lemlib::ControllerSettings linearController(5, // proportional gain (kP)
+        0, // integral gain (kI)
+        10, // derivative gain (kD)
+        0, // anti windup
+        1, // small error range, in inches
+        100, // small error range timeout, in milliseconds
+        3, // large error range, in inches
+        500, // large error range timeout, in milliseconds
+        20 // maximum acceleration (slew)
     );
 
     // angular motion controller
-    lemlib::ControllerSettings angularController(1.37, // proportional gain (kP)
-                                            0, // integral gain (kI)
-                                            10, // derivative gain (kD)
-                                            0, // anti windup
-                                            1, // small error range, in inches
-                                            100, // small error range timeout, in milliseconds
-                                            3, // large error range, in inches
-                                            500, // large error range timeout, in milliseconds
-                                            0 // maximum acceleration (slew)
-);
+    lemlib::ControllerSettings angularController(1.35, // proportional gain (kP)
+                                        0, // integral gain (kI)
+                                        9.9, // derivative gain (kD)
+                                        0, // anti windup
+                                        1, // small error range, in inches
+                                        100, // small error range timeout, in milliseconds
+                                        3, // large error range, in inches
+                                        500, // large error range timeout, in milliseconds
+                                        0 // maximum acceleration (slew)
+    );
     
     // sensors for odometry
     lemlib::OdomSensors sensors(nullptr, // vertical tracking wheel
