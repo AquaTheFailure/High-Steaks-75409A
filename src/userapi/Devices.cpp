@@ -1,7 +1,6 @@
 #include "user/Devices.hpp"
 #include "lemlib/chassis/trackingWheel.hpp"
 #include "pros/misc.h"
-#include "user/actions/HailMary.hpp"
 
 namespace devices {
     pros::MotorGroup leftMotors({-14, -13, -12}, pros::MotorGearset::blue);
@@ -74,8 +73,6 @@ namespace devices {
     pros::adi::Pneumatics doinker(2, false);
 
     pros::adi::Potentiometer potentiometer(3);
-
-    pros::Vision visionSensor(1);
 }
 
 // Button Controll setup
