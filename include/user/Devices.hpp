@@ -5,6 +5,7 @@
 #include "pros/imu.hpp"
 #include "pros/misc.hpp"
 #include "pros/motor_group.hpp"
+#include "pros/optical.hpp"
 
 #include "user/actions/Doinker.hpp"
 #include "user/actions/HailMary.hpp"
@@ -36,6 +37,8 @@ namespace devices {
     extern pros::adi::Pneumatics doinker;
 
     extern pros::adi::Potentiometer potentiometer;
+
+    extern pros::Optical opticalSensor;
 }
 
 namespace configuredButtons{

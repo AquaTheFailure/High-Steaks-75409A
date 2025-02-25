@@ -1,12 +1,10 @@
 #include "main.h"
-// #include "lemlib/logger/logger.hpp"
 #include "pros/motors.h"
 #include "pros/screen.h"
 #include "pros/screen.hpp"
 #include "user/Devices.hpp"
 #include "user/AutomSelector.hpp"
 #include <cstdio>
-// #include <iostream>
 
 using namespace devices;
 
@@ -22,6 +20,8 @@ void initialize() {
     chassis.calibrate(); // calibrate sensors
     // chassis.setBrakeMode(pros::E_MOTOR_BRAKE_BRAKE);
     hailMaryMotor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+    opticalSensor.set_integration_time(20);
+    opticalSensor.set_led_pwm(100);
     
     // std::cout << "HERE!!!" <<poer456dfgscvx 
 
@@ -42,6 +42,10 @@ void initialize() {
             pros::screen::print(pros::E_TEXT_MEDIUM, 2, "Theta: %f", chassis.getPose().theta);
             pros::screen::print(pros::E_TEXT_MEDIUM, 3, "Autom: (%d) %s", automSelector::get_selected(), automSelector::get_selected_name());
             pros::screen::print(pros::E_TEXT_MEDIUM, 4, "HailMerry Deg: %f", hailMaryMotor.get_position());
+            pros::screen::print(pros::E_TEXT_MEDIUM, 5, "Red: %lf, Green: %lf, Blue: %lf, Hue: %lf", opticalSensor.get_rgb().red, opticalSensor.get_rgb().blue, opticalSensor.get_rgb().blue, opticalSensor.get_hue());
+            pros::c::optical_rgb_s_t rgb_color = opticalSensor.get_rgb();
+            // std::cout << "Red: " << rgb_color.red << ", Green: " << rgb_color.green << ", Blue: " << rgb_color.blue << std::endl;
+            // pros::s
             // delay to save resources
             pros::delay(50);
         }
@@ -102,7 +106,7 @@ void opcontrol() {
     intakeMotor.move(0);
     liftMotor.move(0);
     chassis.setBrakeMode(pros::E_MOTOR_BRAKE_COAST);
-
+    
     pros::Task warning([] {
         pros::delay(65000);
         controller.rumble("- - - - - - - -");
@@ -112,15 +116,15 @@ void opcontrol() {
 
     while (true) {
         // get joystick positions
-        // int leftY = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
-        // int rightY = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
-
-        // chassis.tank(leftY, rightY);
-
         int leftY = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
-        int rightX = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X);
+        int rightY = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
 
-        chassis.arcade(leftY, rightX);
+        chassis.tank(leftY, rightY);
+
+        // int leftY = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
+        // int rightX = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X);
+
+        // chassis.arcade(leftY, rightX);
 
         // delay to save resources
         pros::delay(10);

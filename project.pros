@@ -315,8 +315,8 @@
       }
     },
     "upload_options": {
-      "slot": 5,
-      "description": "Skibidi"
+      "description": "Skibidi",
+      "slot": 5
     },
     "use_early_access": false
   }

@@ -27,6 +27,11 @@ namespace automSelector{
         return "None";
     }
 
+    /**
+     * @brief Get the selected Autom Value
+     * 
+     * @return int 
+     */
     int get_selected() {
         return (int) round(devices::potentiometer.get_value() / 1023.75) + 1;
     }

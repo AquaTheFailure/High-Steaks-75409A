@@ -20,26 +20,26 @@ namespace devices {
 
     // lateral motion controller
     lemlib::ControllerSettings linearController(5, // proportional gain (kP)
-        0, // integral gain (kI)
-        10, // derivative gain (kD)
-        0, // anti windup
-        1, // small error range, in inches
-        100, // small error range timeout, in milliseconds
-        3, // large error range, in inches
-        500, // large error range timeout, in milliseconds
-        20 // maximum acceleration (slew)
+                                                0, // integral gain (kI)
+                                                10, // derivative gain (kD)
+                                                0, // anti windup
+                                                1, // small error range, in inches
+                                                100, // small error range timeout, in milliseconds
+                                                3, // large error range, in inches
+                                                500, // large error range timeout, in milliseconds
+                                                20 // maximum acceleration (slew)
     );
 
     // angular motion controller
     lemlib::ControllerSettings angularController(1.35, // proportional gain (kP)
-                                        0, // integral gain (kI)
-                                        9.9, // derivative gain (kD)
-                                        0, // anti windup
-                                        1, // small error range, in inches
-                                        100, // small error range timeout, in milliseconds
-                                        3, // large error range, in inches
-                                        500, // large error range timeout, in milliseconds
-                                        0 // maximum acceleration (slew)
+                                                0, // integral gain (kI)
+                                                9.9, // derivative gain (kD)
+                                                0, // anti windup
+                                                1, // small error range, in inches
+                                                100, // small error range timeout, in milliseconds
+                                                3, // large error range, in inches
+                                                500, // large error range timeout, in milliseconds
+                                                0 // maximum acceleration (slew)
     );
     
     // sensors for odometry
@@ -73,14 +73,14 @@ namespace devices {
     pros::adi::Pneumatics doinker(2, false);
 
     pros::adi::Potentiometer potentiometer(3);
+
+    pros::Optical opticalSensor(1);
 }
 
-// Button Controll setup
+// Registers button controlls
 namespace configuredButtons {
-    // buttonActions::Doinker doinkerButton(pros::E_CONTROLLER_DIGITAL_LEFT);
     buttonActions::Doinker doinkerButton(pros::E_CONTROLLER_DIGITAL_Y);
 
-    // buttonActions::MogoMech mogoMechButton(pros::E_CONTROLLER_DIGITAL_A);
     buttonActions::MogoMech mogoMechButton(pros::E_CONTROLLER_DIGITAL_B);
     
     buttonActions::HailMaryUp hailMaryUpButton(pros::E_CONTROLLER_DIGITAL_UP);
@@ -89,6 +89,7 @@ namespace configuredButtons {
 
     buttonActions::LiftUp liftUpButton(pros::E_CONTROLLER_DIGITAL_L1);
     buttonActions::LiftDown liftDownButton(pros::E_CONTROLLER_DIGITAL_L2);
+    buttonActions::ToggleLift toggleLift(pros::E_CONTROLLER_DIGITAL_RIGHT);
 
     buttonActions::IntakeIn intakeInButton(pros::E_CONTROLLER_DIGITAL_R1);
     buttonActions::IntakeOut intakeOutButton(pros::E_CONTROLLER_DIGITAL_R2);
