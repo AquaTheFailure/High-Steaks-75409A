@@ -19,21 +19,21 @@ namespace buttonActions {
 
     class LiftUp : public button::BaseButton {
         public:
-            LiftUp(pros::controller_digital_e_t button, bool enabledTask = false) : BaseButton(button, enabledTask) {}
+            LiftUp(pros::controller_digital_e_t button) : BaseButton(button) {}
             void onPress();
             void onRelease();
     };
 
     class LiftDown : public button::BaseButton {
         public:
-            LiftDown(pros::controller_digital_e_t button, bool enabledTask = false) : BaseButton(button, enabledTask) {}
+            LiftDown(pros::controller_digital_e_t button) : BaseButton(button) {}
             void onPress();
             void onRelease();
     };
 
     class ToggleLift : public button::BaseButton {
         public:
-            ToggleLift(pros::controller_digital_e_t button, bool enabledTask = false) : BaseButton(button, enabledTask) {}
+            ToggleLift(pros::controller_digital_e_t button) : BaseButton(button) {}
             void onPress();
     };
 };

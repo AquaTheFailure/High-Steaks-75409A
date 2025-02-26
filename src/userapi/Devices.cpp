@@ -78,7 +78,6 @@ namespace devices {
     pros::Optical opticalSensor(1);
 }
 
-// Registers button controlls
 namespace configuredButtons {
     buttonActions::Doinker doinkerButton(pros::E_CONTROLLER_DIGITAL_Y);
 

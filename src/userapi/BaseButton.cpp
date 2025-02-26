@@ -5,9 +5,8 @@
 namespace button {
     std::vector<BaseButton*> BaseButton::buttonActions;
 
-    BaseButton::BaseButton(pros::controller_digital_e_t button, bool enabledTask) {
+    BaseButton::BaseButton(pros::controller_digital_e_t button) {
         this->button = button;
-        this->enabledTask = enabledTask;
         buttonActions.push_back(this);
     }
 

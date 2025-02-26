@@ -8,6 +8,7 @@ namespace buttonActions {
     * 
     */
     extern bool toggleScore;
+
     /**
     * @brief Decides which rings to pick up.
     * 
@@ -19,13 +20,13 @@ namespace buttonActions {
 
     class RingSort : public button::BaseButton {
         public:
-            RingSort(pros::controller_digital_e_t button, bool enabledTask = false) : BaseButton(button, enabledTask) {}
+            RingSort(pros::controller_digital_e_t button) : BaseButton(button) {}
             void onPress();
     };
 
     class ChangeRingSortColor : public button::BaseButton {
         public:
-            ChangeRingSortColor(pros::controller_digital_e_t button, bool enabledTask = false) : BaseButton(button, enabledTask) {}
+            ChangeRingSortColor(pros::controller_digital_e_t button) : BaseButton(button) {}
             void onPress();
     };
 }

@@ -5,14 +5,14 @@
 namespace buttonActions {
     class IntakeIn : public button::BaseButton {
         public:
-            IntakeIn(pros::controller_digital_e_t button, bool enabledTask = false) : BaseButton(button, enabledTask) {}
+            IntakeIn(pros::controller_digital_e_t button) : BaseButton(button) {}
             void onPress();
             void onRelease();
     };
 
     class IntakeOut : public button::BaseButton {
         public:
-            IntakeOut(pros::controller_digital_e_t button, bool enabledTask = false) : BaseButton(button, enabledTask) {}
+            IntakeOut(pros::controller_digital_e_t button) : BaseButton(button) {}
             void onPress();
             void onRelease();
     };

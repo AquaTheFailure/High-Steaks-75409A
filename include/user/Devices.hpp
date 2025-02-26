@@ -42,7 +42,13 @@ namespace devices {
     extern pros::Optical opticalSensor;
 }
 
-namespace configuredButtons{
+/*!
+ * \addtogroup configuredButtons
+ * @{
+ */
+
+//! Generic record interfaces and implementations
+namespace configuredButtons {
     extern buttonActions::Doinker doinkerButton;
 
     extern buttonActions::MogoMech mogoMechButton;

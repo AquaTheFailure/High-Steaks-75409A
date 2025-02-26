@@ -3,8 +3,24 @@
 #include <string>
 
 namespace automSelector {
-    std::string get_selected_name();
+    /**
+     * @brief Get the selected Autom Value
+     * 
+     * @return int 
+     */
     int get_selected();
+
+    /**
+     * @brief Get the selected autom name
+     * 
+     * @return std::string 
+     */
+    std::string get_selected_name();
+
+    /**
+     * @brief Runs the selected autom
+     * 
+     */
     void run_autom();
     
     void RedNegative();

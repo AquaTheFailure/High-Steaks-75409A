@@ -12,7 +12,7 @@ namespace button{
             bool enabledTask = false;
 
         public:
-            BaseButton(pros::controller_digital_e_t button, bool enabledTask = false);
+            BaseButton(pros::controller_digital_e_t button);
             virtual ~BaseButton() = default;
 
             static void run();
