@@ -12,6 +12,7 @@
 #include "user/actions/Intake.hpp"
 #include "user/actions/Lift.hpp"
 #include "user/actions/MogoMech.hpp"
+#include "user/actions/RingSorter.hpp"
 
 namespace devices {
     extern pros::MotorGroup leftMotors;
@@ -54,4 +55,7 @@ namespace configuredButtons{
 
     extern buttonActions::IntakeIn intakeInButton;
     extern buttonActions::IntakeOut intakeOutButton;
+
+    extern buttonActions::RingSort ringSortButton;
+    extern buttonActions::ChangeRingSortColor changeRingSortColor;
 }

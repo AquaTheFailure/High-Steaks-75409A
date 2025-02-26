@@ -1,6 +1,7 @@
 #include "user/Devices.hpp"
 #include "lemlib/chassis/trackingWheel.hpp"
 #include "pros/misc.h"
+#include "user/actions/RingSorter.hpp"
 
 namespace devices {
     pros::MotorGroup leftMotors({-14, -13, -12}, pros::MotorGearset::blue);
@@ -89,8 +90,10 @@ namespace configuredButtons {
 
     buttonActions::LiftUp liftUpButton(pros::E_CONTROLLER_DIGITAL_L1);
     buttonActions::LiftDown liftDownButton(pros::E_CONTROLLER_DIGITAL_L2);
-    buttonActions::ToggleLift toggleLift(pros::E_CONTROLLER_DIGITAL_RIGHT);
 
     buttonActions::IntakeIn intakeInButton(pros::E_CONTROLLER_DIGITAL_R1);
     buttonActions::IntakeOut intakeOutButton(pros::E_CONTROLLER_DIGITAL_R2);
+
+    buttonActions::RingSort toggleRingSort(pros::E_CONTROLLER_DIGITAL_A);
+    buttonActions::ChangeRingSortColor changeRingSortColor(pros::E_CONTROLLER_DIGITAL_LEFT);
 }

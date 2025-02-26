@@ -4,6 +4,7 @@
 #include "pros/screen.hpp"
 #include "user/Devices.hpp"
 #include "user/AutomSelector.hpp"
+#include "user/actions/Lift.hpp"
 #include <cstdio>
 
 using namespace devices;
@@ -20,7 +21,7 @@ void initialize() {
     chassis.calibrate(); // calibrate sensors
     // chassis.setBrakeMode(pros::E_MOTOR_BRAKE_BRAKE);
     hailMaryMotor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-    opticalSensor.set_integration_time(20);
+    opticalSensor.set_integration_time(5);
     opticalSensor.set_led_pwm(100);
     
     // std::cout << "HERE!!!" <<poer456dfgscvx 
@@ -42,9 +43,10 @@ void initialize() {
             pros::screen::print(pros::E_TEXT_MEDIUM, 2, "Theta: %f", chassis.getPose().theta);
             pros::screen::print(pros::E_TEXT_MEDIUM, 3, "Autom: (%d) %s", automSelector::get_selected(), automSelector::get_selected_name());
             pros::screen::print(pros::E_TEXT_MEDIUM, 4, "HailMerry Deg: %f", hailMaryMotor.get_position());
-            pros::screen::print(pros::E_TEXT_MEDIUM, 5, "Red: %lf, Green: %lf, Blue: %lf", opticalSensor.get_rgb().red, opticalSensor.get_rgb().blue, opticalSensor.get_rgb().blue);
-            pros::screen::print(pros::E_TEXT_MEDIUM, 6, "Hue: %lf", opticalSensor.get_hue());
-            // pros::s
+            pros::screen::print(pros::E_TEXT_MEDIUM, 5, "Hue: %lf", opticalSensor.get_hue());
+            pros::screen::print(pros::E_TEXT_MEDIUM, 6, "Distance: %d, Brightness: %lf", opticalSensor.get_proximity(), opticalSensor.get_brightness());
+            controller.print(0, 0, "S: %s, Color: %s", buttonActions::toggleScore ? "T" : "F", buttonActions::getRingColor ? "R" : "B");
+
             // delay to save resources
             pros::delay(50);
         }
