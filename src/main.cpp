@@ -42,9 +42,8 @@ void initialize() {
             pros::screen::print(pros::E_TEXT_MEDIUM, 2, "Theta: %f", chassis.getPose().theta);
             pros::screen::print(pros::E_TEXT_MEDIUM, 3, "Autom: (%d) %s", automSelector::get_selected(), automSelector::get_selected_name());
             pros::screen::print(pros::E_TEXT_MEDIUM, 4, "HailMerry Deg: %f", hailMaryMotor.get_position());
-            pros::screen::print(pros::E_TEXT_MEDIUM, 5, "Red: %lf, Green: %lf, Blue: %lf, Hue: %lf", opticalSensor.get_rgb().red, opticalSensor.get_rgb().blue, opticalSensor.get_rgb().blue, opticalSensor.get_hue());
-            pros::c::optical_rgb_s_t rgb_color = opticalSensor.get_rgb();
-            // std::cout << "Red: " << rgb_color.red << ", Green: " << rgb_color.green << ", Blue: " << rgb_color.blue << std::endl;
+            pros::screen::print(pros::E_TEXT_MEDIUM, 5, "Red: %lf, Green: %lf, Blue: %lf", opticalSensor.get_rgb().red, opticalSensor.get_rgb().blue, opticalSensor.get_rgb().blue);
+            pros::screen::print(pros::E_TEXT_MEDIUM, 6, "Hue: %lf", opticalSensor.get_hue());
             // pros::s
             // delay to save resources
             pros::delay(50);
