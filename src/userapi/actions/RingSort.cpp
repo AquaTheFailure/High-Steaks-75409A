@@ -7,19 +7,27 @@ namespace buttonActions {
 
     void RingSort::onPress() {
         if (toggleScore) {
-            devices::intakeMotor.move(0);
-            devices::liftMotor.move(0);
-            toggleScore = false;
+            turnOffSort();
             
         } else {
-            devices::intakeMotor.move(127);
-            devices::liftMotor.move(127);
-            toggleScore = true;
+            turnOnSort();
         }
     }
 
     void ChangeRingSortColor::onPress() {
         getRingColor = !getRingColor;
+    }
+    
+    void turnOnSort() {
+        toggleScore = true;
+        devices::intakeMotor.move(127);
+        devices::liftMotor.move(127);
+    }
+    
+    void turnOffSort() {
+        toggleScore = false;
+        devices::intakeMotor.move(0);
+        devices::liftMotor.move(0);
     }
 
     pros::Task ejectRings([] {
@@ -29,13 +37,13 @@ namespace buttonActions {
         constexpr int AFTER_DELAY = 200;
 
         while (true) {
-            pros::delay(5);
+            pros::delay(3);
             
             if (toggleScore == false) {
                 continue;
             }
 
-            if (devices::opticalSensor.get_proximity() <= 200) {
+            if (devices::opticalSensor.get_proximity() <= 180) {
                 continue;
             }
 

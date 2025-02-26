@@ -20,20 +20,18 @@ namespace buttonActions {
     class LiftUp : public button::BaseButton {
         public:
             LiftUp(pros::controller_digital_e_t button) : BaseButton(button) {}
+            /* Moves lift up to score rings. */
             void onPress();
+            /* Stops lift from scoreing rings. */
             void onRelease();
     };
 
     class LiftDown : public button::BaseButton {
         public:
             LiftDown(pros::controller_digital_e_t button) : BaseButton(button) {}
+            /* Moves lift down to eject rings. */
             void onPress();
+            /* Stop lift from ejecting rings. */
             void onRelease();
-    };
-
-    class ToggleLift : public button::BaseButton {
-        public:
-            ToggleLift(pros::controller_digital_e_t button) : BaseButton(button) {}
-            void onPress();
     };
 };

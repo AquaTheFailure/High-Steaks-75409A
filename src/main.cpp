@@ -21,7 +21,7 @@ void initialize() {
     chassis.calibrate(); // calibrate sensors
     // chassis.setBrakeMode(pros::E_MOTOR_BRAKE_BRAKE);
     hailMaryMotor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-    opticalSensor.set_integration_time(5);
+    opticalSensor.set_integration_time(3);
     opticalSensor.set_led_pwm(100);
     
     // std::cout << "HERE!!!" <<poer456dfgscvx 

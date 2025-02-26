@@ -29,4 +29,10 @@ namespace buttonActions {
             ChangeRingSortColor(pros::controller_digital_e_t button) : BaseButton(button) {}
             void onPress();
     };
+    
+    /* Turns on ring sorting and related motors. */
+    void turnOnSort();
+
+    /* Tuns off ring sorting and related motors. */
+    void turnOffSort();
 }
