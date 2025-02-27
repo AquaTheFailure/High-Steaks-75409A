@@ -3,21 +3,21 @@
 
 namespace buttonActions {
     void IntakeIn::onPress() {
-        buttonActions::turnOffSort();
+        buttonActions::toggleScore = false;
         devices::intakeMotor.move(127);
     }
 
     void IntakeIn::onRelease() {
-        buttonActions::turnOffSort();
+        buttonActions::toggleScore = false;
         devices::intakeMotor.move(0);
     }
 
     void IntakeOut::onPress() {
-        buttonActions::turnOffSort();
+        buttonActions::toggleScore = false;
         devices::intakeMotor.move(-127);
     }
     void IntakeOut::onRelease() {
-        buttonActions::turnOffSort();
+        buttonActions::toggleScore = false;
         devices::intakeMotor.move(0);
     }
 }

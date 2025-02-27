@@ -3,21 +3,21 @@
 
 namespace buttonActions {
     void LiftUp::onPress() {
-        buttonActions::turnOffSort();
+        buttonActions::toggleScore = false;
         devices::liftMotor.move(127);
     }
 
     void LiftUp::onRelease() {
-        buttonActions::turnOffSort();
+        buttonActions::toggleScore = false;
         devices::liftMotor.move(0);
     }
 
     void LiftDown::onPress() {
-        buttonActions::turnOffSort();
+        buttonActions::toggleScore = false;
         devices::liftMotor.move(-127);
     }
     void LiftDown::onRelease() {
-        buttonActions::turnOffSort();
+        buttonActions::toggleScore = false;
         devices::liftMotor.move(0);
     }
 }
