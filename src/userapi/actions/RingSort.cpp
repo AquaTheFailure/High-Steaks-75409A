@@ -43,14 +43,21 @@ namespace buttonActions {
                 continue;
             }
 
-            if (devices::opticalSensor.get_proximity() <= 180) {
+            if (devices::opticalSensor.get_proximity() <= 125) {
                 continue;
             }
 
             double hue = devices::opticalSensor.get_hue();
+            pros::c::optical_rgb_s_t rgb = devices::opticalSensor.get_rgb();
             
             // First Part is checking for is Red Ring, Second Part is checking for Blue Ring.
-            if (!((hue >= 0 && hue <= 30 && getRingColor == false) || (180 <= hue && hue <= 230 && getRingColor == true))) {
+            if (!(
+                // Hue: if red 
+                (0 <= hue && hue <= 30 && getRingColor == false) ||
+                (150 <= hue && hue <= 230 && getRingColor == true) ||
+                (200 <= rgb.red && getRingColor == false) ||
+                (500 <= rgb.blue && getRingColor == true)
+            )) {
                 continue;
             }
             
