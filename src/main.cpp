@@ -5,6 +5,7 @@
 #include "user/Devices.hpp"
 #include "user/AutomSelector.hpp"
 #include "user/actions/Lift.hpp"
+#include "user/actions/RingSorter.hpp"
 #include <cstdio>
 
 using namespace devices;
@@ -49,7 +50,7 @@ void initialize() {
             controller.print(0, 0, "S: %s, Color: %s", buttonActions::toggleScore ? "T" : "F", buttonActions::getRingColor ? "R" : "B");
 
             // delay to save resources
-            pros::delay(50);
+            pros::delay(10);
         }
     });
 }
