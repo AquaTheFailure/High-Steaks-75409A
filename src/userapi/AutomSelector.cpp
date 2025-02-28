@@ -62,12 +62,29 @@ namespace automSelector{
         chassis.waitUntil(39);
         mogoMech.toggle();
         pros::delay(250);
-        buttonActions::toggleScore = true;
+        buttonActions::turnOnSort();
         chassis.follow(decoder["RedNegative2"], 15, 5000, true, true);
     }
 
     void RedPositive() {
+        // chassis.setPose(-61, -12.5, 270);
+        // chassis.follow(decoder["RedPositive1"], 10, 3000, false, false);
+        // // chassis.waitUntil(36);
+        // mogoMech.toggle();
+        // pros::delay(250);
+        // buttonActions::turnOnSort();
+        // chassis.follow(decoder["RedPositive2"], 10, 5000, true, true);
 
+        chassis.setPose(-61, -24.5, 90);
+        intakeMotor.move(127);
+        chassis.follow(decoder["First"], 10, 5000, true, false);
+        doinker.toggle();
+        chassis.follow(decoder["Second"], 10, 4000, false, false);
+        pros::delay(400);
+        doinker.toggle();
+        chassis.follow(decoder["Third"], 10, 4000, true, false);
+        chassis.follow(decoder["Fourth"], 10, 3000, false, false);
+        mogoMech.toggle();
     }
 
     void MoveLittle() {
