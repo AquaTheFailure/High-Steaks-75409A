@@ -47,7 +47,9 @@ void initialize() {
             pros::screen::print(pros::E_TEXT_MEDIUM, 5, "Hue: %lf", opticalSensor.get_hue());
             pros::screen::print(pros::E_TEXT_MEDIUM, 6, "Distance: %d, Brightness: %lf", opticalSensor.get_proximity(), opticalSensor.get_brightness());
             pros::screen::print(pros::E_TEXT_MEDIUM, 7, "R: %lf, G: %lf, B: %lf", opticalSensor.get_rgb().red, opticalSensor.get_rgb().green, opticalSensor.get_rgb().blue);
+            pros::screen::print(pros::E_TEXT_MEDIUM, 8, "Position: %f", liftMotor.get_position());
             controller.print(0, 0, "S: %s, Color: %s", buttonActions::toggleScore ? "T" : "F", buttonActions::getRingColor ? "R" : "B");
+
 
             // delay to save resources
             pros::delay(10);

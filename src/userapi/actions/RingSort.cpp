@@ -58,7 +58,7 @@ namespace buttonActions {
         constexpr int PROXIMITY_THRESHOLD = 200;
         constexpr double PERCENTAGE_DIFFRENCE = 0.30;
 
-        constexpr int RED_FIRST_DELAY = 65;
+        constexpr int RED_FIRST_DELAY = 90;
         constexpr int RED_SECOND_DELAY = 300;
         constexpr int RED_AFTER_DELAY = 200;
 
@@ -82,6 +82,11 @@ namespace buttonActions {
             double colorDiffrence = calculatePercentageDiffrence(rgb.red, rgb.blue);
             std::cout << colorDiffrence << std::endl;
 
+
+            /**
+             * Ejects red rings
+             * Checks if it's a red ring while only trying to score blue rings to eject
+             */
             if (isRedRing(hue, rgb, PERCENTAGE_DIFFRENCE) && getRingColor == false) {
                 pros::delay(RED_FIRST_DELAY);
                 devices::liftMotor.move(-50);
@@ -90,6 +95,10 @@ namespace buttonActions {
                 pros::delay(RED_AFTER_DELAY);
             }
 
+            /**
+             * Edjects blue rings
+             * Checks if it's a red ring while only trying to score blue rings to eject
+             */
             if (isBlueRing(hue, rgb, PERCENTAGE_DIFFRENCE) && getRingColor == true) {
                 pros::delay(BLUE_FIRST_DELAY);
                 devices::liftMotor.move(-50);

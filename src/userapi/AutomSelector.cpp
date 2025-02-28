@@ -67,24 +67,34 @@ namespace automSelector{
     }
 
     void RedPositive() {
-        // chassis.setPose(-61, -12.5, 270);
-        // chassis.follow(decoder["RedPositive1"], 10, 3000, false, false);
-        // // chassis.waitUntil(36);
-        // mogoMech.toggle();
-        // pros::delay(250);
-        // buttonActions::turnOnSort();
-        // chassis.follow(decoder["RedPositive2"], 10, 5000, true, true);
-
         chassis.setPose(-61, -24.5, 90);
         intakeMotor.move(127);
-        chassis.follow(decoder["First"], 10, 5000, true, false);
+        chassis.follow(decoder["RP1"], 10, 3000, true, true);
+        chassis.waitUntil(56);
+        intakeMotor.move(30);
         doinker.toggle();
-        chassis.follow(decoder["Second"], 10, 4000, false, false);
+
+        chassis.follow(decoder["RP2"], 10, 4000, false, false);
+        doinker.toggle();
         pros::delay(400);
-        doinker.toggle();
-        chassis.follow(decoder["Third"], 10, 4000, true, false);
-        chassis.follow(decoder["Fourth"], 10, 3000, false, false);
+
+        chassis.follow(decoder["RP3"], 10, 4000, true, false);
+
+        chassis.follow(decoder["RP4"], 10, 3000, false, false);
         mogoMech.toggle();
+        pros::delay(200);
+        liftMotor.move_relative(800, 127);
+        pros::delay(500);
+        mogoMech.toggle();
+        
+        chassis.follow(decoder["RP5"], 10, 3000, true, false);
+
+        chassis.follow(decoder["RP6"], 10, 3000, false, false);
+        mogoMech.toggle();
+        pros::delay(200);
+        liftMotor.move(127);
+        
+        chassis.follow(decoder["RP7"], 10, 3000, true, false);
     }
 
     void MoveLittle() {

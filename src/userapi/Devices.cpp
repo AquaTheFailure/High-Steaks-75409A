@@ -75,7 +75,7 @@ namespace devices {
 
     pros::adi::Potentiometer potentiometer(3);
 
-    pros::Optical opticalSensor(1);
+    pros::Optical opticalSensor(9);
 }
 
 namespace configuredButtons {
