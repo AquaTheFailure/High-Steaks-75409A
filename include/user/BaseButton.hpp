@@ -11,7 +11,6 @@ namespace button{
             /* The button registerd to run a certain action. */
             pros::controller_digital_e_t button;
             bool wasPressed = false;
-            bool enabledTask = false;
 
         public:
             BaseButton(pros::controller_digital_e_t button);
