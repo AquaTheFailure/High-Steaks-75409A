@@ -3,6 +3,8 @@
 #include <string>
 
 namespace automSelector {
+    extern bool isComp;
+
     /**
      * @brief Get the selected Autom Value
      * 
@@ -28,4 +30,5 @@ namespace automSelector {
     void MoveLittle();
     void BlueNegative();
     void BluePositive();
+    void Skills();
 }

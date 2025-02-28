@@ -75,6 +75,7 @@ void disabled() {}
  */
 
 void competition_initialize() {
+    automSelector::isComp = true;
 }
 
 /**
