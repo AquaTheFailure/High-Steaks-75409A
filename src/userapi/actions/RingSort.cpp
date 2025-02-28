@@ -40,12 +40,31 @@ namespace buttonActions {
         return (smaller / larger);
     }
 
+    bool isRedRing(double hue, pros::c::optical_rgb_s_t rgb, int PERCENTAGE_DIFFRENCE) {
+        return (
+            (0 <= hue && hue <= 30) || 
+            (rgb.blue < rgb.red && PERCENTAGE_DIFFRENCE <= calculatePercentageDiffrence(rgb.red, rgb.blue))
+        );
+    }
+
+    bool isBlueRing(double hue, pros::c::optical_rgb_s_t rgb, int PERCENTAGE_DIFFRENCE) {
+        return (
+            (150 <= hue && hue <= 230 && getRingColor == true) ||
+            (rgb.red < rgb.blue && PERCENTAGE_DIFFRENCE <= calculatePercentageDiffrence(rgb.red, rgb.blue) && getRingColor == true)
+        );
+    }
+
     pros::Task ejectRings([] {
         constexpr int PROXIMITY_THRESHOLD = 200;
-        constexpr int FIRST_DELAY = 55;
-        constexpr int SECOND_DELAY = 300;
-        constexpr int AFTER_DELAY = 200;
         constexpr double PERCENTAGE_DIFFRENCE = 0.30;
+
+        constexpr int RED_FIRST_DELAY = 65;
+        constexpr int RED_SECOND_DELAY = 300;
+        constexpr int RED_AFTER_DELAY = 200;
+
+        constexpr int BLUE_FIRST_DELAY = 85;
+        constexpr int BLUE_SECOND_DELAY = 300;
+        constexpr int BLUE_AFTER_DELAY = 200;
 
         while (true) {
             pros::delay(3);
@@ -62,23 +81,23 @@ namespace buttonActions {
             pros::c::optical_rgb_s_t rgb = devices::opticalSensor.get_rgb();
             double colorDiffrence = calculatePercentageDiffrence(rgb.red, rgb.blue);
             std::cout << colorDiffrence << std::endl;
-            
-            // First Part is checking for is Red Ring, Second Part is checking for Blue Ring.
-            if (!(
-                // Hue: if red 
-                (0 <= hue && hue <= 30 && getRingColor == false) ||
-                (150 <= hue && hue <= 230 && getRingColor == true) ||
-                (rgb.blue < rgb.red && PERCENTAGE_DIFFRENCE <= colorDiffrence && getRingColor == false) ||
-                (rgb.red < rgb.blue && PERCENTAGE_DIFFRENCE <= colorDiffrence && getRingColor == true)
-            )) {
-                continue;
+
+            if (isRedRing(hue, rgb, PERCENTAGE_DIFFRENCE) && getRingColor == false) {
+                pros::delay(RED_FIRST_DELAY);
+                devices::liftMotor.move(-50);
+                pros::delay(RED_SECOND_DELAY);
+                devices::liftMotor.move(127);
+                pros::delay(RED_AFTER_DELAY);
             }
-            
-            pros::delay(FIRST_DELAY);
-            devices::liftMotor.move(0);
-            pros::delay(SECOND_DELAY);
-            devices::liftMotor.move(127);
-            pros::delay(AFTER_DELAY);
+
+            if (isBlueRing(hue, rgb, PERCENTAGE_DIFFRENCE) && getRingColor == true) {
+                pros::delay(BLUE_FIRST_DELAY);
+                devices::liftMotor.move(-50);
+                pros::delay(BLUE_SECOND_DELAY);
+                devices::liftMotor.move(127);
+                pros::delay(BLUE_AFTER_DELAY);
+            }
+
         }
     });
 }
