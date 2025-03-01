@@ -21,7 +21,7 @@ namespace buttonActions {
     }
 
     void HailMaryMacro::onPress() {
-        int degree = 320;
+        int degree = 450;
         if (devices::hailMaryMotor.get_position() < degree) {
             devices::hailMaryMotor.move_absolute(degree, 127);
         } else {

@@ -1,5 +1,6 @@
 #include "lemlib-tarball/api.hpp"
 #include "user/AutomSelector.hpp"
+#include "pros/misc.hpp"
 #include "user/Devices.hpp"
 #include "user/actions/Lift.hpp"
 #include <cmath>
@@ -15,7 +16,7 @@ namespace automSelector{
     bool isComp = false;
 
     int get_selected() {
-        return (int) round(devices::potentiometer.get_value() / 1023.75) + 1;
+        return (int) round(devices::potentiometerAutom.get_value() / 1023.75) + 1;
     }
 
     std::string get_selected_name() {
@@ -35,7 +36,7 @@ namespace automSelector{
     }
 
     void run_autom() {
-        if (isComp) {
+        if (isComp == true) {
             buttonActions::getRingColor = true;
             Skills();
             return;
@@ -136,10 +137,10 @@ namespace automSelector{
         pros::delay(200);
         buttonActions::turnOnSort();
 
-        chassis.follow(decoder["Skills4"], 15, 7000, true, true);
+        chassis.follow(decoder["Skills4"], 15, 6000, true, true);
         chassis.waitUntil(82);
         pros::delay(100);
-        chassis.turnToHeading(245, 2000, {}, false);
+        chassis.turnToHeading(245, 1500, {}, false);
         pros::delay(100);
 
         chassis.follow(decoder["Skills5"], 15, 7000, true, false);
@@ -147,12 +148,12 @@ namespace automSelector{
 
         chassis.follow(decoder["Skills6"], 15, 5000, false, false);
         pros::delay(100);
-        chassis.turnToHeading(90, 3000, {}, false);
+        chassis.turnToHeading(45, 2000, {}, false);
         pros::delay(500);
         buttonActions::turnOffSort();
         liftMotor.move(-50);
         
-        chassis.follow(decoder["Skills7"], 15, 3000, false, false);
+        chassis.follow(decoder["Skills7"], 15, 2000, false, false);
         pros::delay(100);
         mogoMech.toggle();
         pros::delay(200);
@@ -160,11 +161,12 @@ namespace automSelector{
 
         chassis.follow(decoder["Skills8"], 15, 7000, true, false);
         pros::delay(100);
-        chassis.turnToHeading(180, 2000, {}, false);
+        chassis.turnToHeading(180, 2000, {.maxSpeed=75}, false);
         pros::delay(100);
 
-        chassis.follow(decoder["Skills9"], 10, 3000, false, true);
+        chassis.follow(decoder["Skills9"], 10, 3000, false, false);
         pros::delay(100);
         mogoMech.toggle();
+        chassis.setPose(-47.5, 23.5, 174);
     }
 }

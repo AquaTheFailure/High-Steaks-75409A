@@ -37,15 +37,11 @@ namespace devices {
     extern pros::adi::Pneumatics mogoMech;
     extern pros::adi::Pneumatics doinker;
 
-    extern pros::adi::Potentiometer potentiometer;
+    extern pros::adi::Potentiometer potentiometerAutom;
+    extern pros::adi::Potentiometer potentiometerMatchSkills;
 
     extern pros::Optical opticalSensor;
 }
-
-/*!
- * \addtogroup configuredButtons
- * @{
- */
 
 //! Generic record interfaces and implementations
 namespace configuredButtons {
