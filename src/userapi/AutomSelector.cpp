@@ -119,7 +119,7 @@ namespace automSelector{
     }
 
     void Skills() {
-        chassis.setPose(-59, -0.5, 90);
+        chassis.setPose(-59, -1, 90);
         chassis.follow(decoder["Skills1"], 10, 2000, true, false);
         pros::delay(100);
         liftMotor.move(127);
@@ -136,6 +136,35 @@ namespace automSelector{
         pros::delay(200);
         buttonActions::turnOnSort();
 
-        chassis.follow(decoder["Skills4"], 15, 5000, true, false);
+        chassis.follow(decoder["Skills4"], 15, 7000, true, true);
+        chassis.waitUntil(82);
+        pros::delay(100);
+        chassis.turnToHeading(245, 2000, {}, false);
+        pros::delay(100);
+
+        chassis.follow(decoder["Skills5"], 15, 7000, true, false);
+        pros::delay(100);
+
+        chassis.follow(decoder["Skills6"], 15, 5000, false, false);
+        pros::delay(100);
+        chassis.turnToHeading(90, 3000, {}, false);
+        pros::delay(500);
+        buttonActions::turnOffSort();
+        liftMotor.move(-50);
+        
+        chassis.follow(decoder["Skills7"], 15, 3000, false, false);
+        pros::delay(100);
+        mogoMech.toggle();
+        pros::delay(200);
+        liftMotor.move(0);
+
+        chassis.follow(decoder["Skills8"], 15, 7000, true, false);
+        pros::delay(100);
+        chassis.turnToHeading(180, 2000, {}, false);
+        pros::delay(100);
+
+        chassis.follow(decoder["Skills9"], 10, 3000, false, true);
+        pros::delay(100);
+        mogoMech.toggle();
     }
 }
