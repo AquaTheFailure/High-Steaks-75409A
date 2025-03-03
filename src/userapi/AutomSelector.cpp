@@ -13,8 +13,6 @@ ASSET(Automs_txt);
 lemlib_tarball::Decoder decoder(Automs_txt);
 
 namespace automSelector{
-    bool isComp = false;
-
     int get_selected() {
         return (int) round(devices::potentiometerAutom.get_value() / 1023.75) + 1;
     }
@@ -36,12 +34,12 @@ namespace automSelector{
     }
 
     void run_autom() {
-        if (isComp == true) {
+        if ((int) round(potentiometerMatchSkills.get_value() / 2047.5) == 0) {
             buttonActions::getRingColor = true;
             Skills();
             return;
         }
-
+        
         switch (get_selected()) {
             case 1:
                 buttonActions::getRingColor = true;
@@ -87,13 +85,15 @@ namespace automSelector{
         chassis.follow(decoder["RP2"], 10, 4000, false, false);
         doinker.toggle();
         pros::delay(400);
+        liftMotor.move_relative(200, 127);
+        pros::delay(100);
 
         chassis.follow(decoder["RP3"], 10, 4000, true, false);
 
         chassis.follow(decoder["RP4"], 10, 3000, false, false);
         mogoMech.toggle();
         pros::delay(200);
-        liftMotor.move_relative(800, 127);
+        liftMotor.move_relative(600, 127);
         pros::delay(500);
         mogoMech.toggle();
         
@@ -113,10 +113,48 @@ namespace automSelector{
     }
 
     void BluePositive() {
+        chassis.setPose(61, -24.5, 225);
+        intakeMotor.move(127);
+        chassis.follow(decoder["BP1"], 10, 3000, true, true);
+        chassis.waitUntil(56);
+        intakeMotor.move(30);
+        doinker.toggle();
+        liftMotor.move_relative(200, 127);
+        intakeMotor.move(-10);
 
+        chassis.follow(decoder["BP2"], 10, 4000, false, false);
+        doinker.toggle();
+        pros::delay(400);
+
+        chassis.follow(decoder["BP3"], 10, 4000, true, false);
+
+        chassis.follow(decoder["BP4"], 10, 3000, false, false);
+        mogoMech.toggle();
+        pros::delay(200);
+        liftMotor.move_relative(600, 127);
+        pros::delay(500);
+        mogoMech.toggle();
+
+        chassis.follow(decoder["BP5"], 10, 2500, true, false);
+
+
+        chassis.follow(decoder["BP6"], 10, 3000, false, false);
+        mogoMech.toggle();
+        pros::delay(200);
+        liftMotor.move_relative(800, 127);
+
+        chassis.follow(decoder["BP7"], 10, 3000, true, false);
     }
 
     void BlueNegative() {
+        chassis.setPose(61, 47.5, 90);
+        chassis.follow(decoder["BN1"], 15, 3000, false, true);
+        chassis.waitUntil(39);
+        mogoMech.toggle();
+        pros::delay(250);
+        buttonActions::turnOnSort();
+
+        chassis.follow(decoder["BN2"], 15, 5000, true, true);
     }
 
     void Skills() {

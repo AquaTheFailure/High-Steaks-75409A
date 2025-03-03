@@ -3,8 +3,6 @@
 #include <string>
 
 namespace automSelector {
-    extern bool isComp;
-
     /**
      * @brief Get the selected Autom Value
      * 
