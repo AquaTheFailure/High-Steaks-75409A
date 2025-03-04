@@ -1,5 +1,6 @@
 #include "user/Devices.hpp"
 #include "lemlib/chassis/trackingWheel.hpp"
+#include "pros/adi.hpp"
 #include "pros/misc.h"
 #include "user/actions/RingSorter.hpp"
 
@@ -73,7 +74,8 @@ namespace devices {
     pros::adi::Pneumatics mogoMech(1, false);
     pros::adi::Pneumatics doinker(2, false);
 
-    pros::adi::Potentiometer potentiometer(3);
+    pros::adi::Potentiometer potentiometerAutom(3);
+    pros::adi::Potentiometer potentiometerMatchSkills(4);
 
     pros::Optical opticalSensor(9);
 }

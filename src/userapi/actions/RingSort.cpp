@@ -49,8 +49,8 @@ namespace buttonActions {
 
     bool isBlueRing(double hue, pros::c::optical_rgb_s_t rgb, int PERCENTAGE_DIFFRENCE) {
         return (
-            (150 <= hue && hue <= 230 && getRingColor == true) ||
-            (rgb.red < rgb.blue && PERCENTAGE_DIFFRENCE <= calculatePercentageDiffrence(rgb.red, rgb.blue) && getRingColor == true)
+            (150 <= hue && hue <= 230) ||
+            (rgb.red < rgb.blue && PERCENTAGE_DIFFRENCE <= calculatePercentageDiffrence(rgb.red, rgb.blue))
         );
     }
 
@@ -58,11 +58,11 @@ namespace buttonActions {
         constexpr int PROXIMITY_THRESHOLD = 200;
         constexpr double PERCENTAGE_DIFFRENCE = 0.30;
 
-        constexpr int RED_FIRST_DELAY = 90;
+        constexpr int RED_FIRST_DELAY = 100;
         constexpr int RED_SECOND_DELAY = 300;
         constexpr int RED_AFTER_DELAY = 200;
 
-        constexpr int BLUE_FIRST_DELAY = 85;
+        constexpr int BLUE_FIRST_DELAY = 100;
         constexpr int BLUE_SECOND_DELAY = 300;
         constexpr int BLUE_AFTER_DELAY = 200;
 

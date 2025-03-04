@@ -28,4 +28,5 @@ namespace automSelector {
     void MoveLittle();
     void BlueNegative();
     void BluePositive();
+    void Skills();
 }
