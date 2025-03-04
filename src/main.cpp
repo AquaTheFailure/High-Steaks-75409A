@@ -36,25 +36,38 @@ void initialize() {
     // works, refer to the fmtlib docs
 
     // thread to for brain screen and position logging
-    pros::Task screenTask([&]() {
-        while (true) {
-            // print robot location to the brain screen
-            pros::screen::print(pros::E_TEXT_MEDIUM, 0, "X: %f", chassis.getPose().x);
-            pros::screen::print(pros::E_TEXT_MEDIUM, 1, "Y: %f", chassis.getPose().y);
-            pros::screen::print(pros::E_TEXT_MEDIUM, 2, "Theta: %f", chassis.getPose().theta);
-            pros::screen::print(pros::E_TEXT_MEDIUM, 3, "Autom: (%d) %s", automSelector::get_selected(), automSelector::get_selected_name());
-            pros::screen::print(pros::E_TEXT_MEDIUM, 4, "HailMerry Deg: %f", hailMaryMotor.get_position());
-            pros::screen::print(pros::E_TEXT_MEDIUM, 5, "Hue: %lf", opticalSensor.get_hue());
-            pros::screen::print(pros::E_TEXT_MEDIUM, 6, "Distance: %d, Brightness: %lf", opticalSensor.get_proximity(), opticalSensor.get_brightness());
-            pros::screen::print(pros::E_TEXT_MEDIUM, 7, "R: %lf, G: %lf, B: %lf", opticalSensor.get_rgb().red, opticalSensor.get_rgb().green, opticalSensor.get_rgb().blue);
-            pros::screen::print(pros::E_TEXT_MEDIUM, 8, "Position: %f", liftMotor.get_position());
-            controller.print(0, 0, "S: %s, Color: %s", buttonActions::toggleScore ? "T" : "F", buttonActions::getRingColor ? "R" : "B");
+pros::Task screenTask([&]() {
+    while (true) {
+        pros::screen::clear();
+        pros::screen::print(pros::E_TEXT_MEDIUM, 0, "==== Robot Status ====");
+        
+        // Robot Position
+        pros::screen::print(pros::E_TEXT_MEDIUM, 1, "Position X: %.2f", chassis.getPose().x);
+        pros::screen::print(pros::E_TEXT_MEDIUM, 2, "Position Y: %.2f", chassis.getPose().y);
+        pros::screen::print(pros::E_TEXT_MEDIUM, 3, "Rotation: %.2f", chassis.getPose().theta);
+        
+        // Autonomous Mode
+        pros::screen::print(pros::E_TEXT_MEDIUM, 4, "Autonomous Mode: (%d) %s", automSelector::get_selected(), automSelector::get_selected_name());
+        
+        // HailMary Motor
+        pros::screen::print(pros::E_TEXT_MEDIUM, 5, "HailMary Motor Pos: %.2f", hailMaryMotor.get_position());
+        
+        // Sensor Data
+        pros::screen::print(pros::E_TEXT_MEDIUM, 6, "Hue: %.2lf", opticalSensor.get_hue());
+        pros::screen::print(pros::E_TEXT_MEDIUM, 7, "Distance: %d", opticalSensor.get_proximity());
+        pros::screen::print(pros::E_TEXT_MEDIUM, 8, "Brightness: %.2lf", opticalSensor.get_brightness());
+        pros::screen::print(pros::E_TEXT_MEDIUM, 9, "Color - R: %.2lf, G: %.2lf, B: %.2lf", opticalSensor.get_rgb().red, opticalSensor.get_rgb().green, opticalSensor.get_rgb().blue);
+        
+        // Lift Motor
+        pros::screen::print(pros::E_TEXT_MEDIUM, 10, "Lift Motor Pos: %.2f", liftMotor.get_position());
 
+        // Controller Status
+        controller.print(0, 12, "Score: %s, Color: %s", buttonActions::toggleScore ? "T" : "F", buttonActions::getRingColor ? "R" : "B");
 
-            // delay to save resources
-            pros::delay(10);
-        }
-    });
+        pros::screen::print(pros::E_TEXT_MEDIUM, 13, "========================");
+        pros::delay(100);
+    }
+});
 }
 
 /**
